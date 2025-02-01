@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT MYLO TEKNOLOGI WIJAYA</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
+    <style>
+        .font-jersey {
+            font-family: 'Gloock', serif;
+        }
+        .fade-me {
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        .fade-me.htmx-swapping {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col items-center justify-center">
+    <main class="container mx-auto px-4 py-16 max-w-2xl">
+        <h1 
+            class="font-jersey text-6xl text-black mb-12 text-left fade-me"
+            hx-post="/next-hello"
+            hx-trigger="every 2s"
+            hx-swap="innerHTML transition:true">{{ hello }}</h1>
+        
+        <div class="font-monospace text-xl text-black leading-relaxed space-y-6 text-left">
+            <p>
+                We are a forward-thinking technology company dedicated to delivering solutions 
+                that bridge the gap between complex technological challenges and elegant, user-centric implementations.
+            </p>
+            <p>
+                Our mission is to make products people love.
+            </p>
+            <p class="text-sm font-mono text-gray-500">2025 PT MYLO TEKNOLOGI WIJAYA</p>
+        </div>
+    </main>
+</body>
+</html> 
