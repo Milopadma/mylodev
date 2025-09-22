@@ -2,11 +2,7 @@
 FROM rust:1.82-slim-bookworm AS builder
 
 WORKDIR /app
-COPY Cargo.toml Cargo.lock ./
-RUN cargo generate-lockfile
-
-COPY src ./src
-COPY templates ./templates
+COPY . .
 
 RUN cargo build --release
 
