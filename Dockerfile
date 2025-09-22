@@ -15,6 +15,9 @@ WORKDIR /app
 COPY --from=builder /app/target/release/mylodev /app/mylodev
 COPY --from=builder /app/templates /app/templates
 
+# verify files are copied correctly
+RUN ls -la /app && ls -la /app/templates
+
 # expose the port your app runs on
 EXPOSE 3000
 
