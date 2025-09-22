@@ -1,8 +1,12 @@
 # builder stage
-FROM rust:1.75-slim-bookworm as builder
+FROM rust:1.82-slim-bookworm AS builder
 
 WORKDIR /app
-COPY . .
+COPY Cargo.toml Cargo.lock ./
+RUN cargo generate-lockfile
+
+COPY src ./src
+COPY templates ./templates
 
 RUN cargo build --release
 
