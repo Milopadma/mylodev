@@ -8,11 +8,11 @@
     <!-- seo meta -->
     <meta
       name="description"
-      content="We are a forward-thinking technology company delivering elegant solutions for complex technological challenges. We make products people love."
+      content="PT MYLO TEKNOLOGI WIJAYA is a technology company building custom software, web and mobile applications, and cloud infrastructure. We make products people love."
     />
     <meta
       name="keywords"
-      content="mylo, milopadma, technology solutions, software development, PT MYLO TEKNOLOGI WIJAYA, tech company indonesia"
+      content="mylo, milopadma, technology solutions, software development, web development, mobile app development, cloud infrastructure, PT MYLO TEKNOLOGI WIJAYA, tech company indonesia"
     />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.mylo.dev/" />
@@ -25,7 +25,7 @@
     />
     <meta
       property="og:description"
-      content="Forward-thinking technology company delivering elegant solutions for complex technological challenges. We make products people love."
+      content="A technology company building custom software, web and mobile applications, and cloud infrastructure. We make products people love."
     />
     <meta property="og:url" content="https://www.mylo.dev/" />
     <meta property="og:site_name" content="PT MYLO TEKNOLOGI WIJAYA" />
@@ -38,7 +38,7 @@
     />
     <meta
       name="twitter:description"
-      content="Forward-thinking technology company delivering elegant solutions for complex technological challenges. We make products people love."
+      content="A technology company building custom software, web and mobile applications, and cloud infrastructure. We make products people love."
     />
 
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
@@ -60,54 +60,187 @@
       .fade-me.htmx-swapping {
         opacity: 0;
       }
-      * {
+      /* keep the animated greeting from being selected mid-swap, but allow
+         the rest of the page (contact details, etc.) to be selectable */
+      .no-select {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
       }
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
   </head>
-  <body class="bg-white min-h-screen flex flex-col items-center justify-center">
-    <main class="container mx-auto px-4 py-16 max-w-2xl">
-      <h1
-        class="font-jersey text-6xl text-black mb-12 text-left fade-me"
-        hx-post="/next-hello"
-        hx-trigger="every 2s"
-        hx-swap="innerHTML transition:true"
-      >
-        {{ hello }}
-      </h1>
-
+  <body class="bg-white text-black min-h-screen flex flex-col">
+    <!-- header -->
+    <header
+      class="w-full border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur z-10"
+    >
       <div
-        class="font-monospace text-xl text-black leading-relaxed space-y-6 text-left"
+        class="container mx-auto max-w-4xl px-4 py-4 flex items-center justify-between"
       >
-        <p>
-          We are a forward-thinking technology company dedicated to delivering
-          solutions that bridge the gap between complex technological challenges
-          and elegant, user-centric implementations.
+        <a href="#top" class="font-jersey text-lg tracking-tight text-black">
+          MYLO
+        </a>
+        <nav
+          class="font-mono text-xs sm:text-sm text-gray-500 flex gap-4 sm:gap-6"
+        >
+          <a href="#about" class="hover:text-black transition-colors">About</a>
+          <a href="#services" class="hover:text-black transition-colors"
+            >Services</a
+          >
+          <a href="#contact" class="hover:text-black transition-colors"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="flex-1 w-full">
+      <!-- hero -->
+      <section class="container mx-auto px-4 pt-20 pb-16 max-w-4xl">
+        <h1
+          class="font-jersey text-6xl sm:text-7xl text-black mb-8 text-left fade-me no-select"
+          hx-post="/next-hello"
+          hx-trigger="every 2s"
+          hx-swap="innerHTML transition:true"
+        >
+          {{ hello }}
+        </h1>
+        <p
+          class="font-mono text-xl sm:text-2xl text-black leading-relaxed max-w-2xl"
+        >
+          We are a technology company building custom software, web and mobile
+          applications, and the infrastructure that powers them.
         </p>
-        <p>Our mission is to make products people love.</p>
-        <div class="text-sm font-mono text-gray-500 space-y-2">
+        <p class="font-mono text-base text-gray-500 mt-4">
+          We make products people love.
+        </p>
+      </section>
+
+      <!-- about -->
+      <section
+        id="about"
+        class="container mx-auto px-4 py-16 max-w-4xl border-t border-gray-100"
+      >
+        <h2 class="font-jersey text-3xl sm:text-4xl text-black mb-8">
+          About us
+        </h2>
+        <div
+          class="font-mono text-lg text-black leading-relaxed space-y-6 max-w-2xl"
+        >
           <p>
+            PT MYLO TEKNOLOGI WIJAYA is a technology company dedicated to
+            delivering solutions that bridge the gap between complex
+            technological challenges and elegant, user-centric implementations.
+          </p>
+          <p>
+            We partner with founders and teams to design, build, and ship
+            digital products — from the first prototype to production systems
+            running at scale. We care about craft, clarity, and the small
+            details that make software feel effortless to use.
+          </p>
+          <p>
+            Our mission is simple: to make products people love.
+          </p>
+        </div>
+      </section>
+
+      <!-- services -->
+      <section
+        id="services"
+        class="container mx-auto px-4 py-16 max-w-4xl border-t border-gray-100"
+      >
+        <h2 class="font-jersey text-3xl sm:text-4xl text-black mb-12">
+          What we do
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+          <div>
+            <h3 class="font-jersey text-xl text-black mb-3">
+              Custom software development
+            </h3>
+            <p class="font-mono text-base text-gray-600 leading-relaxed">
+              Bespoke software built around your problem — from internal tools
+              and automations to full product platforms, engineered to be
+              reliable and maintainable.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-jersey text-xl text-black mb-3">
+              Web application development
+            </h3>
+            <p class="font-mono text-base text-gray-600 leading-relaxed">
+              Fast, accessible web applications, dashboards, and marketing
+              sites — designed with care and built on a modern, performant
+              stack.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-jersey text-xl text-black mb-3">
+              Mobile app development
+            </h3>
+            <p class="font-mono text-base text-gray-600 leading-relaxed">
+              Native and cross-platform mobile apps for iOS and Android, from
+              concept and design through to App Store and Play Store release.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-jersey text-xl text-black mb-3">
+              Cloud &amp; infrastructure
+            </h3>
+            <p class="font-mono text-base text-gray-600 leading-relaxed">
+              Scalable hosting, APIs, and DevOps — cloud architecture and
+              deployment pipelines that keep your product secure and always
+              available.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- contact -->
+      <section
+        id="contact"
+        class="container mx-auto px-4 py-16 max-w-4xl border-t border-gray-100"
+      >
+        <h2 class="font-jersey text-3xl sm:text-4xl text-black mb-8">
+          Get in touch
+        </h2>
+        <p class="font-mono text-lg text-black leading-relaxed mb-8 max-w-2xl">
+          Have a project in mind, or just want to say hello? We'd love to hear
+          from you.
+        </p>
+        <div class="font-mono text-base space-y-3">
+          <p>
+            <span class="text-gray-500">Email</span>
             <a
               href="mailto:hello@mylo.dev"
-              class="text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
+              class="ml-3 text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
               >hello@mylo.dev</a
             >
           </p>
           <p>
+            <span class="text-gray-500">Phone</span>
             <a
               href="tel:+6285121020001"
-              class="text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
+              class="ml-3 text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
               >+62 851 21020001</a
             >
           </p>
         </div>
-        <p class="text-sm font-mono text-gray-500">
-          2026 PT MYLO TEKNOLOGI WIJAYA
-        </p>
-      </div>
+      </section>
     </main>
+
+    <!-- footer -->
+    <footer class="w-full border-t border-gray-100 mt-8">
+      <div
+        class="container mx-auto max-w-4xl px-4 py-8 font-mono text-sm text-gray-500 space-y-1"
+      >
+        <p class="text-black">PT MYLO TEKNOLOGI WIJAYA</p>
+        <p>A technology company based in Indonesia.</p>
+        <p>&copy; 2026 PT MYLO TEKNOLOGI WIJAYA. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
