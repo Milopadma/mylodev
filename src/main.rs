@@ -42,6 +42,21 @@ async fn index() -> Html<String> {
     }
 }
 
+#[derive(Template)]
+#[template(path = "sitemark-privacy.html")]
+struct SitemarkPrivacyTemplate;
+
+// privacy policy for the sitemark phone apps; the play console and app store listings link here
+async fn sitemark_privacy() -> Html<String> {
+    match SitemarkPrivacyTemplate.render() {
+        Ok(rendered) => Html(rendered),
+        Err(e) => {
+            println!("Template rendering error: {}", e);
+            Html(format!("Template error: {}", e))
+        }
+    }
+}
+
 async fn next_hello() -> Html<String> {
     let current = HELLO_INDEX.fetch_add(1, Ordering::Relaxed) + 1;
     let index = current % HELLOS.len();
@@ -58,6 +73,7 @@ async fn main() {
         .route("/", get(index))
         .route("/home", get(index))
         .route("/test", get(index))
+        .route("/sitemark/privacy", get(sitemark_privacy))
         .route("/next-hello", post(next_hello));
 
     let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
