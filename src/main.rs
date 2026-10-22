@@ -1,5 +1,6 @@
 use askama::Template;
 use axum::{
+    http::StatusCode,
     response::Html,
     routing::{get, post},
     Router,
@@ -57,6 +58,27 @@ async fn sitemark_privacy() -> Html<String> {
     }
 }
 
+#[derive(Template)]
+#[template(path = "privacy-policy.html")]
+struct PrivacyPolicyTemplate;
+
+// privacy policy for the downpage iphone app; the app's plus sheet and its app store listing link here
+async fn privacy_policy() -> (StatusCode, Html<String>) {
+    match PrivacyPolicyTemplate.render() {
+        Ok(rendered) => (StatusCode::OK, Html(rendered)),
+        Err(e) => {
+            println!("Template rendering error: {}", e);
+            // the policy has to stay reachable, so point people at a way to ask for it
+            (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Html(String::from(
+                    "<p>The privacy policy couldn't load. Try again in a moment, or email <a href=\"mailto:hello@mylo.dev\">hello@mylo.dev</a> for a copy. <a href=\"/\">Go to mylo.dev</a></p>",
+                )),
+            )
+        }
+    }
+}
+
 async fn next_hello() -> Html<String> {
     let current = HELLO_INDEX.fetch_add(1, Ordering::Relaxed) + 1;
     let index = current % HELLOS.len();
@@ -73,6 +95,7 @@ async fn main() {
         .route("/", get(index))
         .route("/home", get(index))
         .route("/test", get(index))
+        .route("/privacy-policy", get(privacy_policy))
         .route("/sitemark/privacy", get(sitemark_privacy))
         .route("/next-hello", post(next_hello));
 
