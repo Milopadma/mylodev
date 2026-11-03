@@ -41,6 +41,7 @@
       content="A technology company building custom software, web and mobile applications, and cloud infrastructure. We make products people love."
     />
 
+    {% include "umami.html" %}
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -216,6 +217,8 @@
             <span class="text-gray-500">Email</span>
             <a
               href="mailto:hello@mylo.dev"
+              data-umami-event="contact-email"
+              data-umami-event-location="contact"
               class="ml-3 text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
               >hello@mylo.dev</a
             >
@@ -224,6 +227,8 @@
             <span class="text-gray-500">Phone</span>
             <a
               href="tel:+6285121020001"
+              data-umami-event="contact-phone"
+              data-umami-event-location="contact"
               class="ml-3 text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors duration-150 ease-out hover:text-black hover:decoration-gray-500"
               >+62 851 21020001</a
             >
