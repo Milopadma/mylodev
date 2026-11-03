@@ -1,16 +1,11 @@
-<!-- umami loads only in the top window, so the heatmap preview frame on stats.mylo.dev is not counted as a visit -->
+<!-- umami loads only in the top window, so a page shown in a frame elsewhere is not counted as a visit -->
 <script>
   if (window.self === window.top) {
-    for (const name of ["script", "recorder"]) {
-      const tag = document.createElement("script");
-      tag.src = `https://stats.mylo.dev/${name}.js`;
-      tag.async = false; // run in order, the recorder needs the tracker loaded first
-      tag.dataset.websiteId = "9bfa144d-f9e3-4ba0-9c9a-2d44bc894aa3";
-      if (name === "script") {
-        tag.dataset.domains = "mylo.dev,www.mylo.dev";
-        tag.dataset.performance = "true";
-      }
-      document.head.append(tag);
-    }
+    const tag = document.createElement("script");
+    tag.src = "https://stats.mylo.dev/script.js";
+    tag.dataset.websiteId = "9bfa144d-f9e3-4ba0-9c9a-2d44bc894aa3";
+    tag.dataset.domains = "mylo.dev,www.mylo.dev";
+    tag.dataset.performance = "true";
+    document.head.append(tag);
   }
 </script>
