@@ -79,6 +79,27 @@ async fn privacy_policy() -> (StatusCode, Html<String>) {
     }
 }
 
+#[derive(Template)]
+#[template(path = "downpage.html")]
+struct DownpageSupportTemplate;
+
+// support page for the downpage iphone app; its app store listing uses this as the support url
+async fn downpage_support() -> (StatusCode, Html<String>) {
+    match DownpageSupportTemplate.render() {
+        Ok(rendered) => (StatusCode::OK, Html(rendered)),
+        Err(e) => {
+            println!("Template rendering error: {}", e);
+            // people land here when they need help, so the fallback still gives them a way to ask for it
+            (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Html(String::from(
+                    "<p>The Downpage support page couldn't load. Try again in a moment, or email <a href=\"mailto:hello@mylo.dev\">hello@mylo.dev</a> for help. <a href=\"/\">Go to mylo.dev</a></p>",
+                )),
+            )
+        }
+    }
+}
+
 async fn next_hello() -> Html<String> {
     let current = HELLO_INDEX.fetch_add(1, Ordering::Relaxed) + 1;
     let index = current % HELLOS.len();
@@ -96,6 +117,7 @@ async fn main() {
         .route("/home", get(index))
         .route("/test", get(index))
         .route("/privacy-policy", get(privacy_policy))
+        .route("/downpage", get(downpage_support))
         .route("/sitemark/privacy", get(sitemark_privacy))
         .route("/next-hello", post(next_hello));
 
